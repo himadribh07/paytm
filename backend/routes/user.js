@@ -13,7 +13,7 @@ const signUpSchema = zod.object({
   lastName: zod.string(),
 });
 user.post("/signup", async (req, res) => {
-  const success = signUpSchema.safeParse(req.body);
+  const { success } = signUpSchema.safeParse(req.body);
   if (!success) {
     return res.status(411).json({
       message: "Email already taken",
@@ -57,7 +57,7 @@ const signInSchema = zod.object({
 });
 
 user.post("/signin", async (req, res) => {
-  const success = signInSchema.safeParse(req.body);
+  const { success } = signInSchema.safeParse(req.body);
   if (!success) {
     return res.status(411).json({
       message: "Email already taken",
